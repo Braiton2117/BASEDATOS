@@ -11,8 +11,8 @@ import productosRoutes from './routes/productos.routes.js';
 import pedidosRoutes from './routes/pedidos.routes.js';
 import pedidosdetRoutes from './routes/pedidosdet.routes.js';
 
-//import { login } from './authController.js'
-//import { authenticateToken } from './authMiddleware.js';
+import { login } from './authController.js'
+import { authenticateToken } from './authMiddleware.js';
 import { conmysql } from './db.js'; // Importa la conexión de db.js
 
 const __filename = fileURLToPath(import.meta.url);
@@ -42,14 +42,14 @@ db.connect(err => {
 }); */
 
 // Prueba de conexión
-/*async function testConnection() {
+async function testConnection() {
     try {
         await conmysql.getConnection();
         console.log('Conectado a la base de datos MySQL');
     } catch (err) {
         console.error('Error de conexión a MySQL:', err);
     }
-}*/
+}
 
 testConnection();
 
@@ -60,14 +60,14 @@ app.use(express.urlencoded({extended:true}));  //se añade para poder receptar f
 app.use('/uploads',express.static(path.join(__dirname,'../uploads')));
 
 // Ruta para iniciar sesión y obtener el token
-/*app.post('/login', login);
+app.post('/login', login);
 
 // Rutas protegidas con JWT (requieren token para el acceso)
 app.use('/api', clientesRoutes);
 app.use('/api', usuariosRoutes);
 app.use('/api', productosRoutes);
 app.use('/api', pedidosRoutes);
-app.use('/api', pedidosdetRoutes);*/
+app.use('/api', pedidosdetRoutes);
 
 // Manejo de rutas no encontradas
 app.use((req, res, next) => {
